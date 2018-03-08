@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>Test</title>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+   <style> 
+.first, .second,.third,.fourth,.fifty,.sixth {
+    padding: 1px;
+    text-align: center;
+    width:500px;
+    height:50px;
+    background-color:LightGray;
+    border: solid 5px #c3c3c3;
+}
+</style>
+   </head>
+  <body style="background-color:beige">
+  <form  action="flat1.html">
+   <center>
+ <style>
+   p {
+    font-family: verdana;
+    font-size: 20px;
+    color:brown;
+     }
+   </style>
+      <h1><b>RSMP CONSTRUCTION</b></h1>
+<div class="first">Single Room Flat</div>
+   <p class="first"><input type="submit" value="single room flat"></p>
+   </center>
+<script> 
+$(function () {
+    $(".first")
+        .filter("p")
+        .toggle()
+        .addBack()
+        .not("p")
+        .click(function (e) {
+            return $("." + e.target.className).not("div").slideToggle(0)
+    });
+});
+</script>
+   </form>
+<form  action="flat2.html">
+   <center>
+  <style>
+   p {
+    font-family: verdana;
+    font-size: 20px;
+    color:brown;
+     }
+   </style>
+      
+<div class="second">Double Room Flat</div>
+   <p class="second"><input type="submit" value="double room flat"></p>
+   </center>
+<script> 
+$(function () {
+    $(" .second")
+        .filter("p")
+        .toggle()
+        .addBack()
+        .not("p")
+        .click(function (e) {
+            return $("." + e.target.className).not("div").slideToggle(0)
+    });
+});
+</script>
+   </form>
+
+   </body>
+   
+</html>
