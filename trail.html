@@ -1,0 +1,68 @@
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<style>
+#wrapper {
+  text-align:center;
+  border:1px solid #7F7F7F;
+  width:150px;
+  margin:25px auto;
+  padding:25px;
+  background-color:#E3E4E4;
+}
+
+#myTimer {
+  font:64px Tahoma bold;
+  padding:20px;
+  display:block;
+}
+input {
+  width:125px;
+  padding:10px;
+}
+.btnEnable {
+  background-color:#E6F9D2;
+  border:1px solid #97DE4C;
+  color:#232323;
+  cursor:pointer;
+}
+
+.btnDisable {
+  background-color:#FCBABA;
+  border:1px solid #DD3939;
+  color:#232323;
+  cursor:wait;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+  <div id="myTimer"></div>
+  <input type="button" id="myBtn" class="btnEnable" 
+ onclick="alert('Finally!')"name="Please wait" value="please">
+</div>
+
+<script>
+var sec = 5;
+var myTimer = document.getElementById('myTimer');
+var myBtn = document.getElementById('myBtn');
+window.onload = countDown;
+function countDown() {
+  if (sec < 10) {
+    myTimer.innerHTML = "0" + sec;
+  } else {
+    myTimer.innerHTML = sec;
+  }
+  if (sec <= 0) {
+    
+    document.getElementById("myBtn").disabled = true;
+    $("#myBtn").removeClass().addClass("btnDisable");
+    $("#myTimer").fadeTo(2500, 0);
+   
+    return;
+  }
+  sec -= 1;
+  window.setTimeout(countDown, 1000);
+}
+
+</script>
