@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script src="web3.min.js"></script>
+   </head>
+  <body style="background-color:BurlyWood">
+  <form  action="flat.html">
+   <center>
+   <style>
+   p {
+    font-family: verdana;
+    font-size: 20px;
+    color:brown;
+     }
+   </style>
+   <h1>RSMP CONSTRUCTION</h1>
+   <p>DOUBLE ROOMFLAT</p>
+   <table>
+   <tr>
+   <th><p>CUSTOMER NAME:</p></th>
+   <th><input id="name" type="text" placeholder="name"/></th>
+   </tr>
+   <tr>
+   <th><p>LAND SIZE:</p></th>
+   <th><input id="landsize" type="text" placeholder="landsize"/></th>
+   </tr>
+   <tr>
+   <th><p>ROOM SIZE1:</p></th>
+   <th><input id="roomsize1" type="text" placeholder="roomsize"/></th>
+   </tr>
+   <th><p>ROOM SIZE2:</p></th>
+   <th><input id="roomsize2" type="text" placeholder="roomsize"/></th>
+   </tr>
+   <tr>
+   <th><p>KITCHEN SIZE:</p></th>
+   <th><input id="kitchensize" type="text" placeholder="kitchensize"/></th>
+   </tr>
+   <tr>
+   <th><p> HALL SIZE:</p></th>
+   <th><input id="hallsize" type="text" placeholder="hallsize"/></th>
+   <tr>
+   <tr>
+   <th><div style="margin-left:200px"><input type="button"  onclick="dp()" value="ENTER"><h1 id="b2"></h1></div></th>
+   <tr> 
+   </table>
+   <p>FORM DETAILS</P>
+   <table>
+   <tr>
+   <th><p>CUSTOMER NAME:</p></th>
+   <th><input id="cusname" type="text" placeholder="name"/></th>
+   </tr>
+   <tr>
+   <th><p>LAND SIZE:</p></th>
+   <th><input id="land" type="text" placeholder="landsize"/></th>
+   </tr>
+   <tr>
+   <th><p>ROOM DETAILS:</p></th>
+   <th><input id="roomno" type="text" placeholder="room no"/></th>
+   </tr>
+   <tr>
+   <th><p>ESTIMATED SIZE:</p></th>
+   <th><input id="estsize" type="text" placeholder="Estimated size"/></th>
+   </tr>
+   <tr>
+   <th><p>QUOTATION AMOUNT:</p></th>
+   <th><input id="amount" type="text" placeholder="quotation amount"/></th>
+   <tr>
+   <th><p>FREE SPACE:</p></th>
+   <th><input id="space" type="text" placeholder="Free space"/></th>
+   <tr>
+   <tr>
+   <th><div style="margin-left:200px"><input type="button"  onclick="tr()" value="ENTER"><h1 id="b2"></h1></div></th>
+   <tr> 
+   <tr>
+   <th><div style="margin-left:200px"><input type="submit" value="Home"></div></th>
+   <tr> 
+   </table>
+   </center>
+   </form>
+   </body>
+   <script>
+        web3.eth.defaultAccount = web3.eth.accounts[0];
+        var bank= web3.eth.contract([
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "_name",
+				"type": "string"
+			}
+		],
+		"name": "quotation",
+		"outputs": [
+			{
+				"name": "totalsize",
+				"type": "uint256"
+			},
+			{
+				"name": "totalroom",
+				"type": "uint256"
+			},
+			{
+				"name": "quotationsize",
+				"type": "uint256"
+			},
+			{
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"name": "freespace",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "totalsize",
+				"type": "uint256"
+			},
+			{
+				"name": "size1",
+				"type": "uint256"
+			},
+			{
+				"name": "size2",
+				"type": "uint256"
+			},
+			{
+				"name": "kitchen",
+				"type": "uint256"
+			},
+			{
+				"name": "hall",
+				"type": "uint256"
+			}
+		],
+		"name": "doubleflat",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"name": "totalsize",
+				"type": "uint256"
+			},
+			{
+				"name": "size",
+				"type": "uint256"
+			},
+			{
+				"name": "kitchen",
+				"type": "uint256"
+			},
+			{
+				"name": "hall",
+				"type": "uint256"
+			}
+		],
+		"name": "singleflat",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]);
+     var sybex = bank.at('0x5ed5a49ee4d4038fe5c411411cdd5afa48de0de9');
+     
+     if(!web3.isConnected()) {
+  
+        console.log("Ok");
+        
+      } else {
+        console.log("no");
+      }
+      web3.version.getNetwork((err, netId) => {
+            switch (netId) {
+              case "1":
+                console.log('This is mainnet')
+                break
+              case "2":
+                console.log('This is the deprecated Morden test network.')
+                break
+              case "3":
+                console.log('This is the ropsten test network.')
+                break
+              case "4":
+                console.log('This is the Rinkeby test network.')
+                break
+              case "42":
+                console.log('This is the Kovan test network.')
+                break
+              default:
+                console.log('This is an unknown network.')
+            }
+        })
+        function dp()
+       {
+        var a=document.getElementById("name").value;
+	var b=document.getElementById("landsize").value;
+	var c=document.getElementById("roomsize1").value;
+        var d=document.getElementById("roomsize2").value;
+	var e=document.getElementById("kitchensize").value;
+	var f=document.getElementById("hallsize").value;
+        sybex.doubleflat(a,b,c,d,e,f,function(error,result){
+                if (!error) {
+                    alert(result);
+                }
+                else{
+                  console.error(error);
+                }
+              });
+	alert("done!...");
+            }
+	function tr(){
+        var g=document.getElementById("cusname").value;
+	sybex.quotation(g,function(error,result){
+                if (!error) {
+                   document.getElementById("land").value=result[0];
+		   document.getElementById("roomno").value=result[1];
+		   document.getElementById("estsize").value=result[2];
+		   document.getElementById("amount").value=result[3];
+                   document.getElementById("space").value=result[4];
+                }
+                else{
+                  console.error(error);
+                }
+              });
+            }
+	
+</script>
+</html>
