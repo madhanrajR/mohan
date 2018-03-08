@@ -1,0 +1,57 @@
+contract building
+{
+    struct st
+    {
+      string name;
+      uint256 size;
+      uint256 floor;
+      uint256 roomno;
+      uint256 roomsize1;
+       uint256 roomsize2;
+      uint256 kitsize;
+      uint256 hallsize;
+      uint256 quotation;
+      uint256 amount;
+      uint256 freespace;
+    }
+    mapping(string => st)mm;
+    function singleflat(string name,uint256 totalsize,uint256 size, uint256 kitchen,uint256 hall)
+    {
+        mm[name].name=name;
+        mm[name].size=totalsize;
+       mm[name].roomno=1;
+        mm[name].roomsize1=size;
+        mm[name].kitsize=kitchen;
+        mm[name].hallsize=hall;
+        mm[name].quotation=mm[name].roomsize1+mm[name].kitsize+mm[name].hallsize;
+        require(mm[name].quotation<= mm[name].size);
+        {
+            mm[name].freespace=mm[name].size-mm[name].quotation;
+             mm[name].amount=10*mm[name].quotation;
+        }
+        
+    }
+    function doubleflat(string name,uint256 totalsize,uint256 size1,uint256 size2,uint256 kitchen,uint256 hall)
+    {
+        mm[name].name=name;
+        mm[name].size=totalsize;
+         mm[name].roomno=2;
+        mm[name].roomsize1=size1;
+        mm[name].roomsize2=size2;
+        mm[name].kitsize=kitchen;
+        mm[name].hallsize=hall;
+        mm[name].quotation=(mm[name].roomsize1+mm[name].roomsize2)+mm[name].kitsize+mm[name].hallsize;
+        require(mm[name].quotation<= mm[name].size);
+        {
+            mm[name].freespace=mm[name].size-mm[name].quotation;
+             mm[name].amount=10*mm[name].quotation;
+        }
+        
+    }
+    function quotation(string _name)public view returns(uint256 totalsize,uint256 totalroom,uint256 quotationsize,uint256 amount,uint256 freespace)
+    {
+        require(mm[_name].quotation<= mm[_name].size);
+       return (mm[_name].size, mm[_name].roomno,mm[_name].quotation,mm[_name].amount,mm[_name].freespace);
+    }
+    
+}
